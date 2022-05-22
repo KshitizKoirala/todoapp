@@ -1,0 +1,28 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --watchAll --verbose --forceExit --coverage --runInBand"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^5.1.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.2",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.3"
+  }
+}

@@ -1,0 +1,77 @@
+<%- include("./partials/header") %>
+
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">To Do List</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <% if(typeof(error) !== 'undefined' ) {%>
+        <div class="alert alert-warning" role="alert">
+            <%= error %>
+          </div>          
+    <% }%>
+    
+    <h2>Add A New Task</h2>
+    <!-- Add Task Form -->
+    <form action="/add/todo" method="POST">
+        <input type="text" name="task_name" class="form-control" placeholder="Enter Task Name" required>
+        <input type="text" name="task_description" class="form-control" placeholder="Enter Task Description" required>
+        <!-- <input type="datetime-local" name="task_end_date_time" class="form-control" placeholder="Enter Date and Time" required> -->
+        <input type="datetime-local" name="task_end_date_time" class="form-control" placeholder="Enter Date and Time" required />
+        <select name="task_status" class="form-select" aria-placeholder="Select Task Status">
+            <option selected value="ToDo">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+        </select>
+        <input type="submit" value="Add Task" class="btn btn-primary btn-md">
+    </form>
+
+    <!-- Filter Task By Status -->
+    <form action="/getone/" method="POST">
+        <h2>
+            Filter Tasks By Status
+        </h2>
+        <select name="task_status" class="form-select" aria-placeholder="Select Task Status">
+            <option selected value="ToDo">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+        </select>
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+
+    <table class="my-5 list-tasks">
+        <tr>
+            <th>Status</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>End Date and Time</th>
+            <th>Actions</th>
+        </tr>
+        <% if(typeof(tasks) !== 'undefined' ) {%>
+        <% tasks.map(task => { %>
+        <tr>
+            <td><%= task.dataValues.task_status %></td>
+            <td><%= task.dataValues.task_name %></td>
+            <td><%= task.dataValues.task_description %></td>
+            <td><%= task.dataValues.task_end_date_time %></td>
+            <td>
+                <!-- Button for Update -->
+                <a href="/task/<%=task.id%>/" id="getTask">
+                    <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </a>
+                <!-- Delete Task -->
+                <a href="/delete/todo/<%=task.id%>/" class="btn btn-danger btn-sm"> Delete </a>
+            </td>
+            
+           
+        </tr>
+        <% })} %>
+    </table>
+</div>
+
+
+<%- include("./partials/footer") %>

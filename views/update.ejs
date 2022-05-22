@@ -1,0 +1,44 @@
+<%- include("./partials/header") %>
+
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">To Do List</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <% if(typeof(error) !== 'undefined' ) {%>
+        <div class="alert alert-warning" role="alert">
+            <%= error %>
+          </div>          
+    <% }%>
+    
+    <!-- Update Task Form -->
+    <form action="/update/todo/<%=task.id%>" method="POST">
+        <!-- <input type="hidden" name="_method" value="put" /> -->
+        <input type="text" name="task_name" class="form-control" placeholder="Enter Task Name" value="<%=task.task_name%>" required />
+        <input type="text" name="task_description" class="form-control" placeholder="Enter Task Description" value="<%=task.task_description%>" required />
+        <!-- flatpickr is used for datetime module -->
+        <input type="datetime-local" name="task_end_date_time" class="form-control" placeholder="Enter Date and Time" value="<%=task.task_end_date_time%>" required />
+        <select name="task_status" class="form-select" aria-placeholder="Select Task Status">
+            <option selected value="ToDo">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+        </select>
+        <input type="submit" value="Update" class="btn btn-primary btn-md">
+    </form>
+
+    </table>
+</div>
+
+
+<script type="text/javascript" defer>
+    // Set up Flatpickr
+    config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    }
+    flatpickr("input[type=datetime-local]", config);
+</script>
+
+<%- include("./partials/footer") %>

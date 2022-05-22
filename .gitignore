@@ -1,0 +1,22 @@
+node_modules
+style.css.map
+
+# tests and coverage
+coverage
+
+# database & logs
+Logs
+*.db
+*.sqlite3
+*.log
+
+# env
+.env
+
+# other
+.DS_Store
+
+# javascript
+package-lock.json
+.vscode/symbols.json
+
